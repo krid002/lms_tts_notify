@@ -459,8 +459,8 @@ class QueueListener(Thread):
                 'final_delay': event.get(CONF_CHIMETTS_FINAL_DELAY, self._chimetts_final_delay),
                 'tts_speed': event.get(CONF_CHIMETTS_TTS_SPEED, self._chimetts_tts_speed),
                 'tts_pitch': event.get(CONF_CHIMETTS_TTS_PITCH, self._chimetts_tts_pitch),
-                'tts_language': event.get(CONF_CHIMETTS_TTS_LANGUAGE, self._chimetts_tts_language),
-                'tts_voice': event.get(CONF_CHIMETTS_TTS_VOICE, self._chimetts_tts_voice),
+                'tts_language': event.get(CONF_CHIMETTS_OPTION_LANGUAGE, self._chimetts_option_language),
+                'tts_voice': event.get(CONF_CHIMETTS_OPTION_VOICE, self._chimetts_option_voice),
             }
 
             home = self._hass.states.get(self._device_group)
