@@ -57,8 +57,8 @@ SERVICE_SCHEMA = vol.Schema(
         vol.Optional(CONF_CHIMETTS_FINAL_DELAY): cv.positive_int,
         vol.Optional(CONF_CHIMETTS_TTS_SPEED): vol.All(vol.Coerce(int), vol.Range(min=1, max=500)),
         vol.Optional(CONF_CHIMETTS_TTS_PITCH): vol.All(vol.Coerce(int), vol.Range(min=-100, max=100)),
-        vol.Optional(CONF_CHIMETTS_LANGUAGE): cv.string,
-        vol.Optional(CONF_CHIMETTS_VOICE): cv.string,
+        vol.Optional(CONF_CHIMETTS_TTS_LANGUAGE): cv.string,
+        vol.Optional(CONF_CHIMETTS_TTS_VOICE): cv.string,
     }
 )
 
@@ -429,8 +429,8 @@ class QueueListener(Thread):
         self._chimetts_final_delay = config.get(CONF_CHIMETTS_FINAL_DELAY)
         self._chimetts_tts_speed = config.get(CONF_CHIMETTS_TTS_SPEED)
         self._chimetts_tts_pitch = config.get(CONF_CHIMETTS_TTS_PITCH)
-        self._chimetts_tts_language = config.get(CONF_CHIMETTS_LANGUAGE)
-        self._chimetts_tts_voice = config.get(CONF_CHIMETTS_VOICE)
+        self._chimetts_tts_language = config.get(CONF_CHIMETTS_TTS_LANGUAGE)
+        self._chimetts_tts_voice = config.get(CONF_CHIMETTS_TTS_VOICE)
 
 
     def run(self):
