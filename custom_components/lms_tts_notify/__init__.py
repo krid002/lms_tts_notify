@@ -32,6 +32,8 @@ CONF_CHIMETTS_OPTION_OFFSET = 'chimetts_offset'
 CONF_CHIMETTS_FINAL_DELAY = 'chimetts_final_delay'
 CONF_CHIMETTS_TTS_SPEED = 'chimetts_tts_speed'
 CONF_CHIMETTS_TTS_PITCH = 'chimetts_tts_pitch'
+CONF_CHIMETTS_TTS_LANGUAGE = 'chimetts_tts_language'
+CONF_CHIMETTS_TTS_VOICE = 'chimetts_tts_voice'
 
 ATTR_SYNC_GROUP = 'sync_group'
 ATTR_VOLUME = 'volume_level'
@@ -55,6 +57,8 @@ SERVICE_SCHEMA = vol.Schema(
         vol.Optional(CONF_CHIMETTS_FINAL_DELAY): cv.positive_int,
         vol.Optional(CONF_CHIMETTS_TTS_SPEED): vol.All(vol.Coerce(int), vol.Range(min=1, max=500)),
         vol.Optional(CONF_CHIMETTS_TTS_PITCH): vol.All(vol.Coerce(int), vol.Range(min=-100, max=100)),
+        vol.Optional(CONF_CHIMETTS_LANGUAGE):cv.string,
+        vol.Optional(CONF_CHIMETTS_VOICE):cv.string,
     }
 )
 
@@ -425,6 +429,8 @@ class QueueListener(Thread):
         self._chimetts_final_delay = config.get(CONF_CHIMETTS_FINAL_DELAY)
         self._chimetts_tts_speed = config.get(CONF_CHIMETTS_TTS_SPEED)
         self._chimetts_tts_pitch = config.get(CONF_CHIMETTS_TTS_PITCH)
+        self._chimetts_tts_language = config.get(CONF_CHIMETTS_LANGUAGE)
+        self._chimetts_tts_voice = config.get(CONF_CHIMETTS_VOICE)
 
 
     def run(self):
@@ -453,6 +459,8 @@ class QueueListener(Thread):
                 'final_delay': event.get(CONF_CHIMETTS_FINAL_DELAY, self._chimetts_final_delay),
                 'tts_speed': event.get(CONF_CHIMETTS_TTS_SPEED, self._chimetts_tts_speed),
                 'tts_pitch': event.get(CONF_CHIMETTS_TTS_PITCH, self._chimetts_tts_pitch),
+                'tts_language': event.get(CONF_CHIMETTS_TTS_LANGUAGE, self._chimetts_tts_language),
+                'tts_voice': event.get(CONF_CHIMETTS_TTS_VOICE, self._chimetts_tts_voice),
             }
 
             home = self._hass.states.get(self._device_group)
