@@ -32,8 +32,8 @@ CONF_CHIMETTS_OPTION_OFFSET = 'chimetts_offset'
 CONF_CHIMETTS_FINAL_DELAY = 'chimetts_final_delay'
 CONF_CHIMETTS_TTS_SPEED = 'chimetts_tts_speed'
 CONF_CHIMETTS_TTS_PITCH = 'chimetts_tts_pitch'
-CONF_CHIMETTS_TTS_LANGUAGE = 'chimetts_tts_language'
-CONF_CHIMETTS_TTS_VOICE = 'chimetts_tts_voice'
+CONF_CHIMETTS_OPTION_LANGUAGE = 'chimetts_language'
+CONF_CHIMETTS_OPTION_VOICE = 'chimetts_voice'
 
 ATTR_SYNC_GROUP = 'sync_group'
 ATTR_VOLUME = 'volume_level'
@@ -57,8 +57,8 @@ SERVICE_SCHEMA = vol.Schema(
         vol.Optional(CONF_CHIMETTS_FINAL_DELAY): cv.positive_int,
         vol.Optional(CONF_CHIMETTS_TTS_SPEED): vol.All(vol.Coerce(int), vol.Range(min=1, max=500)),
         vol.Optional(CONF_CHIMETTS_TTS_PITCH): vol.All(vol.Coerce(int), vol.Range(min=-100, max=100)),
-        vol.Optional(CONF_CHIMETTS_TTS_LANGUAGE): cv.string,
-        vol.Optional(CONF_CHIMETTS_TTS_VOICE): cv.string,
+        vol.Optional(CONF_CHIMETTS_OPTION_LANGUAGE): cv.string,
+        vol.Optional(CONF_CHIMETTS_OPTION_VOICE): cv.string,
     }
 )
 
@@ -429,9 +429,9 @@ class QueueListener(Thread):
         self._chimetts_final_delay = config.get(CONF_CHIMETTS_FINAL_DELAY)
         self._chimetts_tts_speed = config.get(CONF_CHIMETTS_TTS_SPEED)
         self._chimetts_tts_pitch = config.get(CONF_CHIMETTS_TTS_PITCH)
-        self._chimetts_tts_language = config.get(CONF_CHIMETTS_TTS_LANGUAGE)
-        self._chimetts_tts_voice = config.get(CONF_CHIMETTS_TTS_VOICE)
-
+        self._chimetts_option_language = config.get(CONF_CHIMETTS_OPTION_LANGUAGE)
+        self._chimetts_option_voice = config.get(CONF_CHIMETTS_OPTION_VOICE)
+       
 
     def run(self):
         '''Listen to queue events, and play them to mediaplayer'''
@@ -567,7 +567,7 @@ class QueueListener(Thread):
                     _LOGGER.debug('ChimeTTS options: %s', _chimetts_options)
 
                     service_data = {
-                        'tts_platform': self._tts_engine,
+                        'tts_platform': "cloud",
                         'entity_id': self._media_player,
                         'message': self._message,
                         **_chimetts_options,
