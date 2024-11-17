@@ -234,6 +234,13 @@ queue:
           max: 500
           step: 5
           unit_of_measurement: '%'
+    chimetts_tts_language:
+      name: "Chime TTS: Language"
+      description: "The TTS language (supported by Google Translate, Microsoft Edge TTS and Nabu Casa Cloud TTS)"
+      required: false
+    chimetts_tts_voice:
+      name: "Chime TTS: Voice"
+      description: Define the voice for the TTS audio (on supported TTS platforms)
     chimetts_tts_pitch:
       name: "Chime TTS: TTS Pitch"
       description: "Change the the TTS pitch in semitones. Negative values for lower, positive for higher"
