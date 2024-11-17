@@ -57,8 +57,8 @@ SERVICE_SCHEMA = vol.Schema(
         vol.Optional(CONF_CHIMETTS_FINAL_DELAY): cv.positive_int,
         vol.Optional(CONF_CHIMETTS_TTS_SPEED): vol.All(vol.Coerce(int), vol.Range(min=1, max=500)),
         vol.Optional(CONF_CHIMETTS_TTS_PITCH): vol.All(vol.Coerce(int), vol.Range(min=-100, max=100)),
-        vol.Optional(CONF_CHIMETTS_LANGUAGE):cv.string,
-        vol.Optional(CONF_CHIMETTS_VOICE):cv.string,
+        vol.Optional(CONF_CHIMETTS_LANGUAGE): cv.string,
+        vol.Optional(CONF_CHIMETTS_VOICE): cv.string,
     }
 )
 
